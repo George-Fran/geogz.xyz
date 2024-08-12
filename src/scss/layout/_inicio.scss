@@ -1,0 +1,82 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.inicio {
+    @include m.contenedor;
+    margin-top: 10rem;
+    @include m.grid(2, 4rem);
+
+    @include m.telefono {
+        @include m.grid(1);
+        margin-top: 0;
+    }
+}
+
+.contenido-inicio {
+    margin-top: 5.5rem;
+
+    @include m.tablet {
+        margin-top: 2rem;
+    }
+    @include m.telefono{
+        margin-top: .5rem;
+    }
+    h1 {
+        margin: 0;
+        margin-top: 6rem;
+        font-size: 3rem;
+        @include m.tablet{
+            margin-top: 0;
+        }
+        @include m.telefono {
+            font-size: 2.4rem;
+        }
+
+        span {
+            background: linear-gradient(270deg,
+                    #08309c,
+                    #149c63, #1152dd);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 6rem;
+            padding: 1rem 0;
+            display: block;
+            @include m.tablet{
+                font-size: 5rem;
+            }
+        }
+    }
+}
+
+.enlaces {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    .boton {
+        border: none;
+        padding: 1.5rem;
+        border-radius: .7rem;
+        background-color: v.$boton;
+        color: v.$blanco;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+            background-color: v.$boton-hover;
+            transition: background-color .3s ease;
+        }
+    }
+
+    svg {
+        width: 32px;
+        height: 32px;
+        color: v.$enlaces;
+        margin-right: .5rem;
+
+        &:hover {
+            color: v.$boton;
+            transition: color .3s ease;
+        }
+    }
+}

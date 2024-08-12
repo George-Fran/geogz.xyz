@@ -1,0 +1,127 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.header {
+    background-color: v.$blanco;
+    // &.sticky{
+    //     box-shadow:  0 0 .2rem .3rem #dad7d7;
+    //     position: sticky;
+    //     top: 0;
+    // }
+    .contenido-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 3rem;
+        align-items: center;
+        @include m.tablet{
+            padding: 3rem 0;
+        }
+    }
+
+    svg {
+        margin: 0;
+        color: v.$azul;
+        width: 5.6rem;
+        height: 5.6rem;
+    }
+
+    .menu {
+        display: none;
+
+        @include m.tablet {
+            font-size: 2.8rem;
+            color: v.$azul;
+            z-index: 9999999;
+            display: block;
+            cursor: pointer;
+            &.fixed{
+                position: fixed;
+                right: 1rem;
+            }
+        }
+    }
+
+    @include m.tablet {
+        .fondo {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(v.$negro, 0.5);
+            animation: entrar .3s ease-in;
+
+            &.none {
+                display: none;
+                animation: salir .3s ease-in;
+            }
+        }
+
+    }
+}
+
+.nav-principal {
+    display: flex;
+    gap: 2.8rem;
+
+    @include m.tablet {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 30rem;
+        padding: 3rem;
+        background-color: v.$blanco;
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform .4s ease, opacity 0.4s ease;
+        z-index: 999999;
+
+        &.dont {
+            opacity: 0;
+            transform: translateX(30rem);
+        }
+
+        &.none {
+            display: none;
+        }
+    }
+
+    a {
+        color: v.$negro;
+        font-size: 1.8rem;
+
+        @include m.tablet {
+            margin-bottom: 2rem;
+
+            &:first-of-type {
+                margin-top: 20rem;
+            }
+        }
+
+        &:hover {
+            text-shadow: 0 0 5px #fff, 0 0 10px v.$hover, 0 0 15px v.$hover, 0 0 20px v.$hover, 0 0 30px v.$hover, 0 0 40px v.$hover;
+            transition: text-shadow .3s ease-in;
+        }
+    }
+
+
+}
+
+@keyframes entrar {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes salir {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
