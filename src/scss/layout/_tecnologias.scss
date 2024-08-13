@@ -1,0 +1,22 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.tecnologias{
+    background-color: v.$azul;
+    h2{
+        text-align: center;
+        color: v.$blanco;
+        margin-bottom: 5rem;
+        font-size: 4rem;
+    }
+}
+.contenido-tecnologias{
+    @include m.contenedor;
+    @include m.grid(6);
+    @include m.tablet{
+        @include m.grid(4);
+    }
+    @include m.telefono{
+        @include m.grid(2);
+    }
+}

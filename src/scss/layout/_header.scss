@@ -3,18 +3,24 @@
 
 .header {
     background-color: v.$blanco;
-    // &.sticky{
-    //     box-shadow:  0 0 .2rem .3rem #dad7d7;
-    //     position: sticky;
-    //     top: 0;
-    // }
+
+
+    &.sticky {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.8);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        position: sticky;
+        top: 0;
+    }
+
     .contenido-header {
         display: flex;
         justify-content: space-between;
-        padding: 3rem;
+        padding: 1rem;
         align-items: center;
-        @include m.tablet{
-            padding: 3rem 0;
+
+        @include m.tablet {
+            padding: 1rem 0;
         }
     }
 
@@ -34,9 +40,11 @@
             z-index: 9999999;
             display: block;
             cursor: pointer;
-            &.fixed{
+
+            &.fixed {
                 position: fixed;
                 right: 1rem;
+                top: 2rem;
             }
         }
     }
@@ -104,6 +112,41 @@
     }
 
 
+}
+
+.header-enlaces {
+    svg {
+        width: 25px;
+        height: 25px;
+        color: v.$enlaces;
+        margin-right: 1rem;
+    }
+
+    .d-theme {
+        background-color: v.$gris;
+        border: none;
+        border-radius: .6rem;
+        display: inline-grid;
+        place-items: center;
+        width: 27px;
+        height: 25px;
+        cursor: pointer;
+        &:hover{
+            background-color: v.$azul;
+            transition: background-color .3s ease;
+            svg{
+                color: v.$grisAzulado;
+                transition: color .3s ease;
+            }
+        }
+        svg{
+            margin: 0;
+            width: 18px;
+        }
+    }
+    @include m.telefono{
+        display: none;
+    }
 }
 
 @keyframes entrar {

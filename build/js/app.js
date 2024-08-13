@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // navegacionFija();
+    navegacionFija();
     mostrarNavegador();
+    scrollNav();
 });
 
-// function navegacionFija() {
-//     const header = document.querySelector('.header');
-//     const inicio = document.querySelector('.boton');
-//     document.addEventListener('scroll', function () {
-//         if (inicio.getBoundingClientRect().bottom < 1) {
-//             header.classList.add('sticky');
-//         } else {
-//             header.classList.remove('sticky');
-//         }
-//     })
-// }
+function navegacionFija() {
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 0){
+            header.classList.add('sticky');
+        } else{
+            header.classList.remove('sticky');
+        }
+    });
+}
 
 function mostrarNavegador() {
     const menu = document.querySelector('.menu');
@@ -47,5 +47,18 @@ function mostrarNavegador() {
         if (navegador.classList.contains('dont')) {
             navegador.classList.add('none');
         }
+    });
+}
+
+function scrollNav(){
+    const navLinks = document.querySelectorAll('.nav-principal a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const sectionScroll = e.target.getAttribute('href');
+            const section = document.querySelector(sectionScroll);
+
+            section.scrollIntoView({behavior: 'smooth'});
+        }) ;
     });
 }
