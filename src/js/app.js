@@ -2,14 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
     navegacionFija();
     mostrarNavegador();
     scrollNav();
+    resaltarEnlace();
 });
 
 function navegacionFija() {
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
-        if(window.scrollY > 0){
+        if (window.scrollY > 0) {
             header.classList.add('sticky');
-        } else{
+        } else {
             header.classList.remove('sticky');
         }
     });
@@ -50,7 +51,27 @@ function mostrarNavegador() {
     });
 }
 
-function scrollNav(){
+function resaltarEnlace() {
+    document.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const enlacesNavegador = document.querySelectorAll('.nav-principal a');
+        let actual = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
+                actual = section.id;
+            }
+        });
+        enlacesNavegador.forEach(enlace => {
+            enlace.classList.remove('activo');
+            if (link.getAttribute('href') === '#' + actual) {
+                link.classList.add('activo');
+            }
+        });
+    });
+}
+function scrollNav() {
     const navLinks = document.querySelectorAll('.nav-principal a');
     navLinks.forEach(link => {
         link.addEventListener('click', e => {
@@ -58,7 +79,7 @@ function scrollNav(){
             const sectionScroll = e.target.getAttribute('href');
             const section = document.querySelector(sectionScroll);
 
-            section.scrollIntoView({behavior: 'smooth'});
-        }) ;
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
     });
 }

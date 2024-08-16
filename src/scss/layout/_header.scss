@@ -96,6 +96,8 @@
     a {
         color: v.$negro;
         font-size: 1.8rem;
+        position: relative;
+        padding: .6rem;
 
         @include m.tablet {
             margin-bottom: 2rem;
@@ -105,9 +107,20 @@
             }
         }
 
-        &:hover {
-            text-shadow: 0 0 5px #fff, 0 0 10px v.$hover, 0 0 15px v.$hover, 0 0 20px v.$hover, 0 0 30px v.$hover, 0 0 40px v.$hover;
-            transition: text-shadow .3s ease-in;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 0%;
+            left: 0;
+            height: -3px;
+            bottom: -3px;
+            border-bottom: .2rem solid v.$hover;
+            transition: .3s;
+        }
+
+        &:hover::before,
+        &.activo::before {
+            width: 100%;
         }
     }
 
@@ -115,14 +128,17 @@
 }
 
 .header-enlaces {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
     svg {
         width: 25px;
         height: 25px;
         color: v.$enlaces;
-        margin-right: 1rem;
     }
 
-    .d-theme {
+    .boton-mode {
         background-color: v.$gris;
         border: none;
         border-radius: .6rem;
@@ -131,20 +147,23 @@
         width: 27px;
         height: 25px;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: v.$azul;
             transition: background-color .3s ease;
-            svg{
+
+            svg {
                 color: v.$grisAzulado;
                 transition: color .3s ease;
             }
         }
-        svg{
-            margin: 0;
+
+        svg {
             width: 18px;
         }
     }
-    @include m.telefono{
+
+    @include m.telefono {
         display: none;
     }
 }

@@ -40,6 +40,10 @@ img {
     height: auto;
     display: block;
 }
+body>section:first-of-type{
+    padding-bottom: 10rem;
+    padding-top: 2rem;
+}
 body>section {
     padding: 10rem 0
 }
